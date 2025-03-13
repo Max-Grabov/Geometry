@@ -31,6 +31,16 @@ namespace GeometryTest {
 			std::cout << "----------------" << std::endl;
 		}
 
+		float Area(){
+			float tot = 0;
+			for(size_t i = 0; i < N - 1; i++){
+				tot += (coordinates[i][0] * coordinates[i+1][1] - coordinates[i][1] * coordinates[i+1][0]);
+			}
+			tot += (coordinates[N-1][0] * coordinates[0][1] - coordinates[N-1][1] * coordinates[0][0]);
+
+			return fabs(tot/2);
+		}
+
 	private:
 		const size_t dimension;
 		float normRadian;
