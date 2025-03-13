@@ -1,4 +1,5 @@
 #pragma once
+
 namespace GeometryTest {
 	#define PI 3.1415926535897931
 	auto toRadians = [](const float &degree){ return (degree*PI)/180.0; };

@@ -1,5 +1,3 @@
-#pragma once
-
 #include <cstddef>
 #include <iostream>
 #include <cstdlib>
@@ -13,13 +11,13 @@ namespace GeometryTest {
 	class Polygon {
 	public:
 		Polygon() : dimension(N){
-			normRadian = toRadians(defaultDegreePerAngle(N));
+			normRadian = GeometryTest::toRadians(GeometryTest::defaultDegreePerAngle(dimension));
 			float startAngle = PI/2;
 
 			for(size_t i = 0; i < N; ++i){
 				coordinates[i][0] = fabs(cos(startAngle)) < 10e-4 ? 0 : cos(startAngle);
 				coordinates[i][1] = fabs(sin(startAngle)) < 10e-4 ? 0 : sin(startAngle);
-				startAngle += (N % 2) ? 2*normRadian : normRadian;
+				startAngle += (PI - normRadian);
 			}
 		}
 
@@ -31,7 +29,7 @@ namespace GeometryTest {
 			std::cout << "----------------" << std::endl;
 		}
 
-		float Area(){
+		inline float Area(){
 			float tot = 0;
 			for(size_t i = 0; i < N - 1; i++){
 				tot += (coordinates[i][0] * coordinates[i+1][1] - coordinates[i][1] * coordinates[i+1][0]);
